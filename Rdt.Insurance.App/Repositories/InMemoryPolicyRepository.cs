@@ -15,4 +15,5 @@ public class InMemoryPolicyRepository : IPolicyRepository
         _policies.FirstOrDefault(p =>
             $"{p.PolicyHolder.FirstName} {p.PolicyHolder.LastName}"
                 .Equals(name, StringComparison.OrdinalIgnoreCase));
+    public IReadOnlyList<Policy> GetAll() => _policies;
 }

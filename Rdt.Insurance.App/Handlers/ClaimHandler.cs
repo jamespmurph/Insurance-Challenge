@@ -1,6 +1,6 @@
 using Rdt.Insurance.App.Models;
 using Rdt.Insurance.App.Repositories;
-//using System.Security.Claims;
+
 
 namespace Rdt.Insurance.App.Services;
 
@@ -28,25 +28,22 @@ public class ClaimHandler
         // Step 3: create a new Claim object, populate its properties, and save it using _claimRepository.
         //         Check Models/Claim.cs to see all the properties you need to set.
         // sepretate these out with there own exception messaqges
-        Policy policy = new();
-        if (_policyRepository != null)
-        {
-            //add the typed model of policy
-            policy = _policyRepository.GetById(policyId) ?? throw new ArgumentException($"Policy with ID {policyId} does not exist.");
-        }
+
+        var policy = _policyRepository.GetById(policyId)
+    ?? throw new ArgumentException($"Policy with ID {policyId} does not exist");
 
         if (dateOfIncident < policy.StartDate || dateOfIncident > policy.EndDate)
         {
             throw new ArgumentOutOfRangeException($"Date of incident {dateOfIncident} is outside the policy coverage period ({policy.StartDate} - {policy.EndDate}).");
         }
+        if (string.IsNullOrWhiteSpace(description))
 
-     if (description == string.Empty || description.IsNullOrWhiteSpace())
         {
-            throw new ArgumentNullException("Description cannot be empty");
+           throw new ArgumentOutOfRangeException(nameof(dateOfIncident), $"Date of incident {dateOfIncident} is outside the policy coverage period ({policy.StartDate} - {policy.EndDate}).");
         }
      if (amountClaiming < 0)
         {
-            throw new ArgumentOutOfRangeException("Amount claiming cannot be negative");
+           throw new ArgumentOutOfRangeException(nameof(amountClaiming), "Amount claiming must be greater then zero.");
         }
 
         var dateFiled = DateTime.Now;       

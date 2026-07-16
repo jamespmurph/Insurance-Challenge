@@ -12,7 +12,7 @@ public class PolicyHandler
         _repository = repository;
     }
 
-    public void CreatePolicy(PolicyHolder policyHolder, DateTime startDate, DateTime endDate, string vehicleRegistrationNumber, decimal riskLevel, bool existingCustomer)
+    public Guid CreatePolicy(PolicyHolder policyHolder, DateTime startDate, DateTime endDate, string vehicleRegistrationNumber, decimal riskLevel, bool existingCustomer)
     {
         if (policyHolder == null)
             throw new ArgumentException("Policy holder is required.");
@@ -58,5 +58,6 @@ public class PolicyHandler
             throw new InvalidOperationException($"Calculated premium of {policy.Premium} exceeds the maximum allowed premium of {maximumPremium}.");
 
         _repository.Save(policy);
+        return policy.Id;
     }
 }

@@ -11,4 +11,9 @@ public class InMemoryClaimRepository : IClaimRepository
         // Look at InMemoryPolicyRepository.cs for an example of how this is done for policies.
        _claims.Add(claim);
     }
+
+    public IReadOnlyList<Claim> GetAll() => _claims;
+
+    public IReadOnlyList<Claim> GetClaimsByPolicyId(Guid policyId) =>
+        _claims.Where(c => c.PolicyId == policyId).ToList();
 }

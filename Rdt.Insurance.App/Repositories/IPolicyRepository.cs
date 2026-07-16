@@ -9,4 +9,7 @@ public interface IPolicyRepository
     Policy? GetById(Guid id);
 
     Policy? GetPolicyByPolicyHolderName(string name);
+
+    
+IReadOnlyList<Policy> GetAll();
 }
