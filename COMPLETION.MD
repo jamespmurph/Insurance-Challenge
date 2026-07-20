@@ -53,4 +53,11 @@ If you used any AI tooling during this exercise, log it honestly below.
 
 | Prompt | Output summary |
 |--------|----------------|
-|        |                |
+"im getting a CS0136 error on StartDate at a specific line in program.cs attached is the specific code      |  It identified that there was a duplicate declaration of StartDate within overlapping
+block. Explain what is causing the naming conflict without re writing any of my whole input handling flow,  |  scopes.
+since i only want to fix this one variable scope issue".
+
+"can you read through this project. I want to understand its current setup and how data currently flows     |  It identified that program.cs was the main menu file that called off to methods in
+so that i can extend it and add more functionality with the same structure"                                 |  the handler files depending on the number selected in the menu. The handler files contain
+                                                                                                               the appropiate and relevant logic and use the in memory repositories to save the data. The 
+                                                                                                               interfaces were used to acsess the methodsw in the in memory repositorys.
